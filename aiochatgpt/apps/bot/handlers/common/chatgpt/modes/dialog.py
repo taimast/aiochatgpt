@@ -70,18 +70,19 @@ async def dialog_name(
 
     await message.answer(l10n.dialog.start.starting(model=gpt_model.model))
     await message.answer(dialog_message.pretty())
-    used_tokens = md.hcode(dialog.num_tokens(user.gpt_model))
-    max_tokens = md.hcode(gpt_model.max_tokens)
+    used_tokens = dialog.num_tokens(user.gpt_model)
+    max_tokens = gpt_model.max_tokens
     await message.answer(
         l10n.dialog.used_tokens(
-            used_tokens=used_tokens,
-            max_tokens=max_tokens
+            used_tokens=md.hcode(used_tokens),
+            max_tokens=md.hcode(max_tokens)
         )
     )
     await session.commit()
     await state.set_state("dialog")
     await state.update_data(
         dialog=dialog,
+        used_tokens=used_tokens,
         max_tokens=max_tokens
     )
 
@@ -139,6 +140,15 @@ async def dialog(
                 )
             )
         )
+        used_tokens = dialog.num_tokens(user.gpt_model)
+        max_tokens = data["max_tokens"]
+        await message.answer(
+            l10n.dialog.used_tokens(
+                used_tokens=md.hcode(used_tokens),
+                max_tokens=md.hcode(max_tokens)
+            )
+        )
+
 
 
 @router.callback_query(DialogCallback.filter(F.action == Action.STOP))
