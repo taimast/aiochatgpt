@@ -60,7 +60,7 @@ class Button:
     def custom_modes() -> Literal["""⚙️ Кастомные режимы"""]: ...
 
     @staticmethod
-    def dialogs() -> Literal["""🕐 Мои диалоги"""]: ...
+    def dialogs() -> Literal["""🕐 Диалоги"""]: ...
 
     @staticmethod
     def skip() -> Literal["""〰️ Пропустить"""]: ...
@@ -196,14 +196,14 @@ class Dialog:
     def no_dialogs(*, mode) -> Literal["""❗️ Нет доступных диалогов по режиму &lt;code&gt;{ $mode }&lt;/code&gt;!"""]: ...
 
     @staticmethod
-    def dialogs(*, mode) -> Literal["""🕐 &lt;b&gt;Мои диалоги&lt;/b&gt; 🕐
+    def dialogs(*, mode) -> Literal["""🕐 &lt;b&gt;Диалоги&lt;/b&gt; 🕐
 
 🔮 &lt;b&gt;Режим чата:&lt;/b&gt; &lt;code&gt;{ $mode }&lt;/code&gt;
 
 🗨️ &lt;b&gt;Доступные диалоги:&lt;/b&gt;"""]: ...
 
     @staticmethod
-    def dialog(*, mode, model, name, used_tokens, max_tokens) -> Literal["""🕐 &lt;b&gt;Мои диалоги&lt;/b&gt; 🕐
+    def dialog(*, mode, model, name, used_tokens, max_tokens) -> Literal["""🕐 &lt;b&gt;Диалоги&lt;/b&gt; 🕐
 
 🪬 &lt;b&gt;Режим чата:&lt;/b&gt; &lt;code&gt;{ $mode }&lt;/code&gt;
 

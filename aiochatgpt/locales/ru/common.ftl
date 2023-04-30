@@ -40,7 +40,7 @@ model_changed =
 button-standard_modes = 🔮 Стандартные режимы
 button-advanced_modes = 🧠 Продвинутые режимы
 button-custom_modes = ⚙️ Кастомные режимы
-button-dialogs = 🕐 Мои диалоги
+button-dialogs = 🕐 Диалоги
 button-skip = 〰️ Пропустить
 button-back = « Назад
 
@@ -162,14 +162,14 @@ dialog-no_dialogs =
     ❗️ Нет доступных диалогов по режиму <code>{$mode}</code>!
 
 dialog-dialogs =
-    🕐 <b>Мои диалоги</b> 🕐
+    🕐 <b>Диалоги</b> 🕐
 
     🔮 <b>Режим чата:</b> <code>{$mode}</code>
 
     🗨️ <b>Доступные диалоги:</b>
 
 dialog-dialog =
-    🕐 <b>Мои диалоги</b> 🕐
+    🕐 <b>Диалоги</b> 🕐
 
     🪬 <b>Режим чата:</b> <code>{$mode}</code>
 
