@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "aiochatgpt"
+version = "0.1.0"
+description = ""
+authors = ["taimast <charlskenno@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aiogram = {version = "^3.0.0b7", allow-prereleases = true, extras = ["i18n"]}
+loguru = "^0.7.0"
+pydantic = "^1.10.7"
+pyyaml = "^6.0"
+apscheduler = "^3.10.1"
+cachetools = "^5.3.0"
+glqiwiapi = "^2.18.3"
+fluentogram = "^1.1.6"
+watchdog = "^3.0.0"
+jinja2 = "^3.1.2"
+sqlalchemy = "^2.0.11"
+sqlalchemy-utils = "^0.41.1"
+asyncpg = "^0.27.0"
+tiktoken = "^0.3.3"
+openai = "^0.27.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,14 @@
+.idea
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.cover
+*.log
+
+poetry.lock
+logs
+*dev*
+*probe*
+/db_data
+

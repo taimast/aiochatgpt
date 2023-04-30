@@ -1,0 +1,21 @@
+bot:
+  token: your_token
+  admins:
+    - your_id
+db:
+  user: postgres
+  password: postgres
+  database: aiochatgpt
+  host: localhost
+  port: 5432
+
+
+chatgpt:
+  models:
+    - model: gpt-3.5-turbo
+      api_key: your_api_key
+      max_tokens: 4096
+
+    - model: gpt-4
+      api_key: your_api_key
+      max_tokens: 8192
