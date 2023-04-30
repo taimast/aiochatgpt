@@ -68,7 +68,9 @@ async def main():
 
     # Setup filter for private messages only
     dp.message.filter(F.chat.type == "private")
-
+    dp.message.filter(F.from_user.id.in_(settings.bot.admins))
+    dp.callback_query.filter(F.from_user.id.in_(settings.bot.admins))
+    
     # Setup routers
     await setup_routers(dp, settings)
 
