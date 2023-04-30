@@ -231,6 +231,7 @@ async def stop_dialog(
 ):
     data = await state.get_data()
     chat_mode: ChatMode = data.get("chat_mode")
+    dialog: Dialog = data.get("dialog")
     if not chat_mode:
         await call.message.answer(l10n.dialog.not_started())
         return
@@ -240,10 +241,10 @@ async def stop_dialog(
         l10n.dialog.stop(),
         reply_markup=common_kbs.custom_back_kb(
             l10n.button.back(),
-            ChatModeCallback(
+            DialogCallback(
                 action=Action.GET,
-                id=chat_mode.id,
-                type=chat_mode.type
+                id=dialog.id,
+                type=dialog.chat_mode.type
             )
         )
     )
