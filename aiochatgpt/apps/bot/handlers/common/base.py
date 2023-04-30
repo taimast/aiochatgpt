@@ -26,4 +26,7 @@ async def start(
     await state.clear()
     if isinstance(message, types.CallbackQuery):
         message = message.message
-    await message.answer(l10n.start(), reply_markup=common_kbs.start(l10n))
+        method = message.edit_text
+    else:
+        method = message.answer
+    await method(l10n.start(), reply_markup=common_kbs.start(l10n))

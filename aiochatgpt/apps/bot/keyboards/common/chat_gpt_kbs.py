@@ -9,6 +9,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from .common_kbs import custom_back_inline_button
 from ...callback_data.base_callback import Action
 from ...callback_data.dialog import ChatModeCallback, ChatAction, DialogCallback
+from .....db.models.dialog import Dialog
 from .....db.models.dialog.chat_mode import ChatModeType, ChatMode
 
 IKB = InlineKeyboardButton
@@ -22,14 +23,9 @@ def custom_modes(modes: list[ChatMode], l10n: TranslatorRunner) -> InlineKeyboar
     builder = InlineKeyboardBuilder()
     for mode in modes:
         builder.button(
-            text=mode.name,
+            text=f"🔮 {mode.name}",
             callback_data=ChatModeCallback(action=Action.GET, type=ChatModeType.CUSTOM, id=mode.id)
         )
-
-    builder.button(
-        text=l10n.button.dialogs(),
-        callback_data=DialogCallback(action=Action.ALL, type=ChatModeType.CUSTOM)
-    )
 
     # Создать
     builder.button(
@@ -50,6 +46,11 @@ def custom_mode(mode: ChatMode, l10n: TranslatorRunner) -> InlineKeyboardMarkup:
     )
 
     builder.button(
+        text=l10n.button.dialogs(),
+        callback_data=ChatModeCallback(action=ChatAction.DIALOGS, type=ChatModeType.CUSTOM, id=mode.id)
+    )
+
+    builder.button(
         text=l10n.custom_mode.button.update(),
         callback_data=ChatModeCallback(action=Action.UPDATE, type=ChatModeType.CUSTOM, id=mode.id)
     )
@@ -58,5 +59,47 @@ def custom_mode(mode: ChatMode, l10n: TranslatorRunner) -> InlineKeyboardMarkup:
         callback_data=ChatModeCallback(action=Action.DELETE, type=ChatModeType.CUSTOM, id=mode.id)
     )
     builder.button(text=l10n.button.back(), callback_data=ChatModeCallback(action=Action.ALL, type=ChatModeType.CUSTOM))
+    builder.adjust(1)
+    return builder.as_markup()
+
+
+def dialogs(
+        dialogs: list[Dialog],
+        l10n: TranslatorRunner,
+):
+    builder = InlineKeyboardBuilder()
+    type = dialogs[0].chat_mode.type
+    chat_mode_id = dialogs[0].chat_mode_id
+    for dialog in dialogs:
+        builder.button(
+            text=f"🗨️ {dialog.name}",
+            callback_data=DialogCallback(action=Action.GET, type=type, id=dialog.id)
+        )
+    builder.button(
+        text=l10n.button.back(),
+        callback_data=ChatModeCallback(action=Action.GET, type=type, id=chat_mode_id)
+    )
+    builder.adjust(1)
+    return builder.as_markup()
+
+
+def dialog(
+        dialog: Dialog,
+        l10n: TranslatorRunner,
+):
+    builder = InlineKeyboardBuilder()
+    type = dialog.chat_mode.type
+    builder.button(
+        text=l10n.dialog.button.continue_(),
+        callback_data=DialogCallback(action=Action.CONTINUE, type=type, id=dialog.id)
+    )
+    builder.button(
+        text=l10n.dialog.button.delete(),
+        callback_data=DialogCallback(action=Action.DELETE, type=type, id=dialog.id)
+    )
+    builder.button(
+        text=l10n.button.back(),
+        callback_data=ChatModeCallback(action=ChatAction.DIALOGS, type=type, id=dialog.chat_mode_id)
+    )
     builder.adjust(1)
     return builder.as_markup()

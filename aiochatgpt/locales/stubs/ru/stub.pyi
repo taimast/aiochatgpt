@@ -16,7 +16,7 @@ class TranslatorRunner:
 Вы сможете наслаждаться долгими и интересными беседами 🗨️🎉
 
 ✅ &lt;b&gt;Основные функции:&lt;/b&gt;
-&lt;code&gt;1&lt;/code&gt;. 🗨️ Различные режимы чата:
+&lt;code&gt;1&lt;/code&gt;. 🗨️🪬 Различные режимы чата:
     🔹🔮&lt;i&gt;стандартные&lt;/i&gt;
     🔹🧠&lt;i&gt;продвинутые&lt;/i&gt;
     🔹⚙️&lt;i&gt;кастомные&lt;/i&gt;
@@ -97,7 +97,9 @@ class Custom_mode:
     def __call__(*, name, description, prompt) -> Literal["""⚙️ &lt;b&gt;Кастомный режим&lt;/b&gt; ⚙️
 
 🏷 &lt;b&gt;Название:&lt;/b&gt; { $name }
+
 📃 &lt;b&gt;Описание:&lt;/b&gt; { $description }
+
 📥 &lt;b&gt;Промпт:&lt;/b&gt; { $prompt }"""]: ...
 
 
@@ -119,27 +121,37 @@ class Custom_modeCreate:
     @staticmethod
     def __call__() -> Literal["""🆕 &lt;b&gt;Создание нового кастомного режима&lt;/b&gt; 🆕
 
+
 🏷 Введите &lt;b&gt;название&lt;/b&gt;:"""]: ...
 
     @staticmethod
     def description(*, name) -> Literal["""🆕 &lt;b&gt;Создание нового кастомного режима&lt;/b&gt; 🆕
 
 🏷 &lt;b&gt;Название:&lt;/b&gt; { $name }
+
+
 📃 Введите &lt;b&gt;описание&lt;/b&gt;:"""]: ...
 
     @staticmethod
     def photo(*, name, description) -> Literal["""🆕 &lt;b&gt;Создание нового кастомного режима&lt;/b&gt; 🆕
 
 🏷 &lt;b&gt;Название:&lt;/b&gt; { $name }
+
 📃 &lt;b&gt;Описание:&lt;/b&gt; { $description }
+
+
 📷 &lt;b&gt;Фото:&lt;/b&gt; прикрепите фото:"""]: ...
 
     @staticmethod
     def prompt(*, name, description) -> Literal["""🆕 &lt;b&gt;Создание нового кастомного режима&lt;/b&gt; 🆕
 
 🏷 &lt;b&gt;Название:&lt;/b&gt; { $name }
+
 📃 &lt;b&gt;Описание:&lt;/b&gt; { $description }
+
+
 📥 Введите &lt;b&gt;промпт&lt;/b&gt;.
+
 Он будет использоваться для генерации ответов GPT.
 Примеры можете посмотреть в стандартных режимах."""]: ...
 
@@ -147,8 +159,11 @@ class Custom_modeCreate:
     def success(*, name, description, prompt) -> Literal["""🆕 &lt;b&gt;Создание нового кастомного режима&lt;/b&gt; 🆕
 
 🏷 &lt;b&gt;Название:&lt;/b&gt; { $name }
+
 📃 &lt;b&gt;Описание:&lt;/b&gt; { $description }
+
 📥 &lt;b&gt;Промпт:&lt;/b&gt; { $prompt }
+
 
 ✅ Кастомный режим успешно создан!"""]: ...
 
@@ -156,6 +171,14 @@ class Custom_modeCreate:
 class Dialog:
     start: DialogStart
     button: DialogButton
+    delete: DialogDelete
+
+    @staticmethod
+    def continue_(*, name, mode, model) -> Literal["""🕐 &lt;b&gt;Продолжение диалога&lt;/b&gt;: &lt;code&gt;{ $name }&lt;/code&gt; 🕐
+
+🔮 &lt;b&gt;Режим чата:&lt;/b&gt; &lt;code&gt;{ $mode }&lt;/code&gt;
+
+🧠 &lt;b&gt;Текущая модель:&lt;/b&gt; &lt;code&gt;{ $model }&lt;/code&gt;"""]: ...
 
     @staticmethod
     def used_tokens(*, used_tokens, max_tokens) -> Literal["""🔖 &lt;b&gt;Использовано токенов:&lt;/b&gt; { $used_tokens }/{ $max_tokens }"""]: ...
@@ -169,6 +192,32 @@ class Dialog:
     @staticmethod
     def not_started() -> Literal["""❗️ &lt;b&gt;Диалог не запущен.&lt;/b&gt;"""]: ...
 
+    @staticmethod
+    def no_dialogs(*, mode) -> Literal["""❗️ Нет доступных диалогов по режиму &lt;code&gt;{ $mode }&lt;/code&gt;!"""]: ...
+
+    @staticmethod
+    def dialogs(*, mode) -> Literal["""🕐 &lt;b&gt;Мои диалоги&lt;/b&gt; 🕐
+
+🔮 &lt;b&gt;Режим чата:&lt;/b&gt; &lt;code&gt;{ $mode }&lt;/code&gt;
+
+🗨️ &lt;b&gt;Доступные диалоги:&lt;/b&gt;"""]: ...
+
+    @staticmethod
+    def dialog(*, mode, model, name, used_tokens, max_tokens) -> Literal["""🕐 &lt;b&gt;Мои диалоги&lt;/b&gt; 🕐
+
+🪬 &lt;b&gt;Режим чата:&lt;/b&gt; &lt;code&gt;{ $mode }&lt;/code&gt;
+
+🧠 &lt;b&gt;Текущая модель:&lt;/b&gt; &lt;code&gt;{ $model }&lt;/code&gt;
+
+
+
+📃 &lt;b&gt;Название:&lt;/b&gt; &lt;code&gt;{ $name }&lt;/code&gt;
+
+🔖 &lt;b&gt;Использовано токенов:&lt;/b&gt; { $used_tokens }/{ $max_tokens }"""]: ...
+
+    @staticmethod
+    def deleted(*, name) -> Literal["""🗑️ Диалог &lt;code&gt;{ $name }&lt;/code&gt; удален."""]: ...
+
 
 class DialogStart:
     @staticmethod
@@ -177,7 +226,9 @@ class DialogStart:
 🏷 Введите &lt;b&gt;название&lt;/b&gt;:"""]: ...
 
     @staticmethod
-    def starting(*, model) -> Literal["""🗨️ &lt;b&gt;Диалог запущен.&lt;/b&gt;
+    def starting(*, name, mode, model) -> Literal["""🗨️ Диалог &lt;code&gt;{ $name }&lt;/code&gt; запущен!
+
+🔮 &lt;b&gt;Режим чата:&lt;/b&gt; &lt;code&gt;{ $mode }&lt;/code&gt;
 
 🧠 &lt;b&gt;Текущая модель:&lt;/b&gt; &lt;code&gt;{ $model }&lt;/code&gt;"""]: ...
 
@@ -185,4 +236,15 @@ class DialogStart:
 class DialogButton:
     @staticmethod
     def stop() -> Literal["""🚫 Остановить диалог"""]: ...
+
+    @staticmethod
+    def continue_() -> Literal["""🚀 Продолжить диалог"""]: ...
+
+    @staticmethod
+    def delete() -> Literal["""🗑️ Удалить диалог"""]: ...
+
+
+class DialogDelete:
+    @staticmethod
+    def confirm() -> Literal["""🗑️  Нажмите еще раз, чтобы подтвердить удаление."""]: ...
 

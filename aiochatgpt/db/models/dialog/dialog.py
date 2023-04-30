@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import typing
+from itertools import islice
 
 import tiktoken
 from loguru import logger
@@ -58,7 +59,7 @@ class Dialog(Base):
     name: Mapped[str] = mapped_column(String(30))
     messages: Mapped[list[dict]] = mapped_column(JSONB, default=list)
     chat_mode_id: Mapped[int] = mapped_column(ForeignKey("chat_modes.id"))
-    chat_mode: Mapped[ChatMode] = relationship(back_populates="dialogs")
+    chat_mode: Mapped[ChatMode] = relationship(back_populates="dialogs", lazy="joined")
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     user: Mapped[User] = relationship(back_populates="dialogs")
 
@@ -73,7 +74,7 @@ class Dialog(Base):
         """Iterate over messages in the dialog."""
         messages = self.messages if not reverse else reversed(self.messages)
         if limit is not None:
-            messages = messages[:limit]
+            messages = islice(messages, limit)
         for message in messages:
             yield Message.from_dict(message)
 

@@ -12,6 +12,7 @@ class Action(str, Enum):
     MENU = "menu"
     START = "start"
     STOP = "stop"
+    CONTINUE = "continue"
 
 
 class UserCallback(CallbackData, prefix="user"):

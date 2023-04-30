@@ -8,7 +8,7 @@ from aiochatgpt.db.models.dialog.chat_mode import ChatModeType
 
 class ChatAction(StrEnum):
     START_DIALOG = "start_dialog"
-
+    DIALOGS = "dialogs"
 
 class ChatModeCallback(CallbackData, prefix="chat_mode"):
     id: int | None

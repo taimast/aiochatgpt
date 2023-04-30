@@ -5,7 +5,7 @@ start =
     Вы сможете наслаждаться долгими и интересными беседами 🗨️🎉
 
     ✅ <b>Основные функции:</b>
-    <code>1</code>. 🗨️ Различные режимы чата:
+    <code>1</code>. 🗨️🪬 Различные режимы чата:
         🔹🔮<i>стандартные</i>
         🔹🧠<i>продвинутые</i>
         🔹⚙️<i>кастомные</i>
@@ -61,7 +61,9 @@ custom_mode =
     ⚙️ <b>Кастомный режим</b> ⚙️
 
     🏷 <b>Название:</b> {$name}
+
     📃 <b>Описание:</b> {$description}
+
     📥 <b>Промпт:</b> {$prompt}
 
 custom_mode-button-start = 🚀 Начать новый диалог
@@ -73,27 +75,37 @@ custom_mode-button-delete = 🗑️ Удалить
 custom_mode-create =
     🆕 <b>Создание нового кастомного режима</b> 🆕
 
+
     🏷 Введите <b>название</b>:
 
 custom_mode-create-description =
     🆕 <b>Создание нового кастомного режима</b> 🆕
 
     🏷 <b>Название:</b> {$name}
+
+
     📃 Введите <b>описание</b>:
 
 custom_mode-create-photo =
     🆕 <b>Создание нового кастомного режима</b> 🆕
 
     🏷 <b>Название:</b> {$name}
+
     📃 <b>Описание:</b> {$description}
+
+
     📷 <b>Фото:</b> прикрепите фото:
 
 custom_mode-create-prompt =
     🆕 <b>Создание нового кастомного режима</b> 🆕
 
     🏷 <b>Название:</b> {$name}
+
     📃 <b>Описание:</b> {$description}
+
+
     📥 Введите <b>промпт</b>.
+
     Он будет использоваться для генерации ответов GPT.
     Примеры можете посмотреть в стандартных режимах.
 
@@ -101,8 +113,11 @@ custom_mode-create-success =
     🆕 <b>Создание нового кастомного режима</b> 🆕
 
     🏷 <b>Название:</b> {$name}
+
     📃 <b>Описание:</b> {$description}
+
     📥 <b>Промпт:</b> {$prompt}
+
 
     ✅ Кастомный режим успешно создан!
 
@@ -112,10 +127,21 @@ dialog-start =
 
     🏷 Введите <b>название</b>:
 
+
 dialog-start-starting =
-    🗨️ <b>Диалог запущен.</b>
+    🗨️ Диалог <code>{$name}</code> запущен!
+
+    🔮 <b>Режим чата:</b> <code>{$mode}</code>
 
     🧠 <b>Текущая модель:</b> <code>{$model}</code>
+
+dialog-continue_ =
+    🕐 <b>Продолжение диалога</b>: <code>{$name}</code> 🕐
+
+    🔮 <b>Режим чата:</b> <code>{$mode}</code>
+
+    🧠 <b>Текущая модель:</b> <code>{$model}</code>
+
 
 dialog-used_tokens =
     🔖 <b>Использовано токенов:</b> {$used_tokens}/{$max_tokens}
@@ -131,3 +157,36 @@ dialog-stop =
 
 dialog-not_started=
     ❗️ <b>Диалог не запущен.</b>
+
+dialog-no_dialogs =
+    ❗️ Нет доступных диалогов по режиму <code>{$mode}</code>!
+
+dialog-dialogs =
+    🕐 <b>Мои диалоги</b> 🕐
+
+    🔮 <b>Режим чата:</b> <code>{$mode}</code>
+
+    🗨️ <b>Доступные диалоги:</b>
+
+dialog-dialog =
+    🕐 <b>Мои диалоги</b> 🕐
+
+    🪬 <b>Режим чата:</b> <code>{$mode}</code>
+
+    🧠 <b>Текущая модель:</b> <code>{$model}</code>
+
+
+
+    📃 <b>Название:</b> <code>{$name}</code>
+
+    🔖 <b>Использовано токенов:</b> {$used_tokens}/{$max_tokens}
+
+
+dialog-button-continue_ = 🚀 Продолжить диалог
+dialog-button-delete = 🗑️ Удалить диалог
+
+
+dialog-delete-confirm =
+    🗑️  Нажмите еще раз, чтобы подтвердить удаление.
+dialog-deleted =
+    🗑️ Диалог <code>{$name}</code> удален.

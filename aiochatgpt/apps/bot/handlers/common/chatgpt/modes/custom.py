@@ -42,7 +42,6 @@ async def custom_mode(
     await call.message.edit_text(
         l10n.custom_modes(),
         reply_markup=chat_gpt_kbs.custom_modes(modes, l10n),
-        cd=ChatModeCallback(action=Action.ALL, type=ChatModeType.CUSTOM)
     )
 
 
@@ -84,7 +83,6 @@ async def custom_mode_create(
     await call.message.edit_text(
         l10n.custom_mode.create(),
         reply_markup=common_kbs.custom_back_kb(l10n.button.back()),
-        cd=ChatModeCallback(action=Action.CREATE, type=ChatModeType.CUSTOM)
     )
     await state.set_state(CreateCustomChatMode.name)
 
