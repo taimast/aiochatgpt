@@ -308,7 +308,7 @@ async def delete_dialog(
     if confirm:
         await session.delete(confirm)
         await session.commit()
-        await call.message.answer(
+        await call.message.edit_text(
             l10n.dialog.deleted(name=confirm.name),
             reply_markup=common_kbs.custom_back_kb(
                 l10n.button.back(),
