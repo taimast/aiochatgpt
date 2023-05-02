@@ -1,3 +1,8 @@
+# AioChatGPT
+
+### AioChatGPT is a Telegram bot that utilizes multiple ChatGPT API keys for even distribution of requests. 
+
+
 ### Установка
 
 1. Заполнить `config.yml`
