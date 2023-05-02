@@ -304,7 +304,7 @@ async def delete_dialog(
         state: FSMContext
 ):
     data = await state.get_data()
-    confirm: Dialog | None = data.get("confirm")
+    confirm: Dialog | None = data.get("confirm_dialog")
     if confirm:
         await session.delete(confirm)
         await session.commit()
@@ -322,7 +322,7 @@ async def delete_dialog(
         await state.clear()
     else:
         dialog: Dialog = await session.get(Dialog, callback_data.id)
-        await state.update_data(confirm=dialog)
+        await state.update_data(confirm_dialog=dialog)
         await call.answer(
-            l10n.dialog.delete.confirm(),
+            l10n.delete.confirm(),
         )

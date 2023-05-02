@@ -33,7 +33,7 @@ class ChatMode(Base):
     description: Mapped[str | None] = mapped_column(String(1000))
     photo_id: Mapped[str | None] = mapped_column(String(100))
     prompt: Mapped[str] = mapped_column(String(5000))
-    dialogs: Mapped[list[Dialog]] = relationship(back_populates="chat_mode")
+    dialogs: Mapped[list[Dialog]] = relationship(back_populates="chat_mode", cascade="all, delete-orphan")
 
     def create_dialog(self, session: AsyncSession, user: User, name: str | None = None) -> Dialog:
         """Create a dialog with this chat mode."""

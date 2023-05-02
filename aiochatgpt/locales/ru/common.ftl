@@ -182,11 +182,15 @@ dialog-dialog =
     🔖 <b>Использовано токенов:</b> {$used_tokens}/{$max_tokens}
 
 
+delete-confirm =
+    🗑️  Нажмите еще раз, чтобы подтвердить удаление.
+
 dialog-button-continue_ = 🚀 Продолжить диалог
 dialog-button-delete = 🗑️ Удалить диалог
 
 
-dialog-delete-confirm =
-    🗑️  Нажмите еще раз, чтобы подтвердить удаление.
 dialog-deleted =
     🗑️ Диалог <code>{$name}</code> удален.
+
+chat_mode-deleted =
+    🗑️ Режим чата <code>{$name}</code> удален.
